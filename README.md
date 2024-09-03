@@ -17,11 +17,11 @@ My personal expenses calculator
 
 DATE, ITEM NAME, AMOUNT, PRICE, CATEGORY
 
-DATE - ISO8601 String or variants OR "UPCOMING"
-ITEM NAME - String name
-AMOUNT - Number followed by unit e.g. 8.5kg, 1.2L
-PRICE - Financial number
-CATEGORY - Category of item e.g. "BILLS". Can be grouped by "/" e.g. BILLS/UTILITY, BILLS/RENT,
+- DATE - ISO8601 String or variants OR "UPCOMING"
+- ITEM NAME - String name
+- AMOUNT - Number followed by unit e.g. 8.5kg, 1.2L
+- PRICE - Financial number
+- CATEGORY - Category of item e.g. "BILLS". Can be grouped by "/" e.g. BILLS/UTILITY, BILLS/RENT,
 
 > [!NOTE]  
 > Date doesn't have to be filled in everytime. If a date is added to a row, all other rows that don't have date will use the date from the last row that have a date.
