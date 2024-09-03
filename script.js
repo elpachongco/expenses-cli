@@ -5,8 +5,8 @@ Vue.createApp({
       rows: [],
       rows_daily: {},
       rows_monthly: {},
+      rows_categorical: {},
       processing: false,
-      history: {},
       prevDate: null,
       first: true,
     }
@@ -30,6 +30,9 @@ Vue.createApp({
 
       this.rows_daily[currentDate] =  (this.rows_daily[currentDate] || 0) + price;
       this.rows_monthly[currentMonth] = (this.rows_monthly[currentMonth] || 0) + price
+
+      let category = row[4].trim() || 'UNKNOWN'
+      this.rows_categorical[category] = (this.rows_categorical[category] || 0) + price
     },
     formatMoney: function (num) {
       return (new Intl.NumberFormat(undefined, {})).format(num)
@@ -61,13 +64,33 @@ Vue.createApp({
 
   },
   template: `
-    <article role="group">
-      <fieldset class="container-fluid">
-        <label>Upload expenses.csv file</label>
-        <input id="csv-file" type="file" accept=".csv"> </input>
+    <article>
+        <label for="csv-file" style="display: inline-block; margin: auto 0;">
+          <small>Upload expenses.csv file</small>
+          <input id="csv-file" type="file" accept=".csv"></input>
+        </label>
         <progress v-if="processing" />
-      </fieldset>
     </article>
+
+    <details open>
+      <summary>Categorical</summary>
+      <article>
+        <table>
+          <thead>
+            <tr>
+              <td>Category</td>
+              <td>Total</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="[dateStr, row] in Object.entries(rows_categorical)">
+              <td>{{ dateStr }}</td>
+              <td>{{ formatMoney(row) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </details>
 
     <div class="grid">
       
