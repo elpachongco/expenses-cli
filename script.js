@@ -66,6 +66,7 @@ Vue.createApp({
 
       let csvFile = document.getElementById('csv-file')
       const file = csvFile.files[0] 
+      if (!file) return;
       Papa.parse(file, {
         delimiter: ',',
         newline: '\n',
@@ -75,6 +76,10 @@ Vue.createApp({
         skipEmptyLines: true,
       })
     },
+    clearDateRanges: function () {
+      this.dateRangeFrom = null
+      this.dateRangeTo = null
+    }
   },
   mounted() {
     let csvFile = document.getElementById('csv-file')
@@ -83,6 +88,7 @@ Vue.createApp({
 
   },
   template: `
+<article>
     <article>
         <label for="csv-file" style="display: inline-block; margin: auto 0;">
           <small>Upload expenses.csv file</small>
@@ -91,6 +97,7 @@ Vue.createApp({
         <progress v-if="processing" />
     </article>
 
+    <form>
     <fieldset role="group">
       <label>
         <small>Date from</small>
@@ -100,8 +107,9 @@ Vue.createApp({
         <small>Date to</small>
         <input type="date" name="date" aria-label="Date " v-model="dateRangeTo">
       </label>
-
+      <input type="button" @click="clearDateRanges" value="Clear dates" style="margin-top: auto;">
     </fieldset>
+    </form>
 
 
     <details open>
@@ -170,6 +178,7 @@ Vue.createApp({
           </article>
       </details>
     </div>
+</article>
   `
 }).mount('#app')
 
