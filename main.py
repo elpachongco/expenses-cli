@@ -26,6 +26,7 @@ import csv
 import argparse
 import json
 from typing import Any, Dict
+from rich import print
 
 parser = argparse.ArgumentParser(prog="Expenses.csv processor", description="")
 parser.add_argument("filename", type=str)
@@ -37,6 +38,7 @@ def main() -> None:
 
     month: Dict[Any, Any] = {}
     day: Dict[Any, Any] = {}
+    categories: Any = {}
 
     with open(filename) as csv_file:
         reader = csv.reader(csv_file)
@@ -70,10 +72,13 @@ def main() -> None:
                     else price
                 )
             }
+            category = row[4].strip().upper() or "UNKNOWN"
+            categories[category] = categories[category] + price if category in categories else price
 
     data: Dict[Any, Any] = {
         "month": month,
         "day": day,
+        "categories": categories
     }
     print(json.dumps(data, indent=4))
 
