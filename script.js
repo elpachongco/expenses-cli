@@ -14,11 +14,14 @@ Vue.createApp({
     }
   },
   watch: {
-    dateRangeFrom: function (newVal, oldVal) {
+    dateRange: function (newVal, oldVal) {
       this.handleFile()
-    },
-    dateRangeTo: function (newVal, oldVal) {
-      this.handleFile()
+    }
+  },
+  computed: {
+    dateRange: function() {
+      // This was added to prevent two properties from triggering this.handleFile() which results in a bug that computes values twice
+      return this.dateRangeTo + this.dateRangeFrom;
     }
   },
   methods: {
@@ -66,7 +69,7 @@ Vue.createApp({
 
       let csvFile = document.getElementById('csv-file')
       const file = csvFile.files[0] 
-      if (!file) return;
+      if (!file || this.processing) return;
       Papa.parse(file, {
         delimiter: ',',
         newline: '\n',
