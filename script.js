@@ -9,6 +9,16 @@ Vue.createApp({
       processing: false,
       prevDate: null,
       first: true,
+      dateRangeFrom: null,
+      dateRangeTo: null,
+    }
+  },
+  watch: {
+    dateRangeFrom: function (newVal, oldVal) {
+      this.handleFile()
+    },
+    dateRangeTo: function (newVal, oldVal) {
+      this.handleFile()
     }
   },
   methods: {
@@ -24,6 +34,11 @@ Vue.createApp({
         this.prevDate = currentDate
       }
       row[0] = currentDate
+
+      if (
+        (this.dateRangeFrom && (new Date(currentDate)).getTime() < (new Date(this.dateRangeFrom)).getTime())
+        || (this.dateRangeTo && (new Date(currentDate)).getTime() > (new Date(this.dateRangeTo)).getTime())
+      ) return;
 
       let price = Number(row[3].trim().replaceAll(',', ''))
       let currentMonth = currentDate == 'UPCOMING' ? currentDate : currentDate.slice(0,7);
@@ -43,24 +58,28 @@ Vue.createApp({
     formatDay: function (dateStr) {
       return (new Date(dateStr)).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'}) || dateStr
     },
-  },
-  mounted() {
-    const _this = this
-    let csvFile = document.getElementById('csv-file')
+    handleFile: function () {
+      this.first = true
+      this.rows_daily = {}
+      this.rows_monthly = {}
+      this.rows_categorical = {}
 
-    csvFile.addEventListener('change', handleFile);
-
-    async function handleFile() {
+      let csvFile = document.getElementById('csv-file')
       const file = csvFile.files[0] 
       Papa.parse(file, {
         delimiter: ',',
         newline: '\n',
-        step: _this.handleCSVLineByLine,
-        before: () => _this.processing = true,
-        complete: () => _this.processing = false,
+        step: this.handleCSVLineByLine,
+        before: () => this.processing = true,
+        complete: () => this.processing = false,
         skipEmptyLines: true,
       })
-    }
+    },
+  },
+  mounted() {
+    let csvFile = document.getElementById('csv-file')
+
+    csvFile.addEventListener('change', this.handleFile);
 
   },
   template: `
@@ -71,6 +90,19 @@ Vue.createApp({
         </label>
         <progress v-if="processing" />
     </article>
+
+    <fieldset role="group">
+      <label>
+        <small>Date from</small>
+        <input type="date" name="date" aria-label="Date" v-model="dateRangeFrom">
+      </label>
+      <label>
+        <small>Date to</small>
+        <input type="date" name="date" aria-label="Date " v-model="dateRangeTo">
+      </label>
+
+    </fieldset>
+
 
     <details open>
       <summary>Categorical</summary>
