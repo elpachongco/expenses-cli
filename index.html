@@ -24,7 +24,7 @@
       </article>
 
       <form>
-        <fieldset role="group">
+        <fieldset class="grid">
           <label>
             <small>Date from</small>
             <input type="date" name="date" aria-label="Date" v-model="dateRangeFrom">
@@ -33,7 +33,7 @@
             <small>Date to</small>
             <input type="date" name="date" aria-label="Date " v-model="dateRangeTo">
           </label>
-          <input type="button" @click="clearDateRanges" value="Clear dates" style="margin-top: auto;">
+          <input type="reset" @click="clearDateRanges" style="margin: auto">
         </fieldset>
       </form>
 
