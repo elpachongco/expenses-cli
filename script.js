@@ -40,7 +40,7 @@ Vue.createApp({
 
       if (
         (this.dateRangeFrom && (new Date(currentDate)).getTime() < (new Date(this.dateRangeFrom)).getTime())
-        || (this.dateRangeTo && (new Date(currentDate)).getTime() > (new Date(this.dateRangeTo)).getTime())
+        || (this.dateRangeTo && (new Date(currentDate)).getTime() > (new Date(this.dateRangeTo + ' 23:59:59')).getTime())
       ) return;
 
       let price = Number(row[3].trim().replaceAll(',', ''))
