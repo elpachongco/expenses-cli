@@ -36,3 +36,7 @@ DATE, ITEM NAME, AMOUNT, PRICE, CATEGORY
 , TAXI, 1, 150, TRANSPORTATION
 2024-09-04 10:55, GROCERY, 2500, FOOD
 ```
+
+## More information
+
+I made a [Blog post](https://earlps.net/post/2024-09-14-tracking-expenses/) about this project.
