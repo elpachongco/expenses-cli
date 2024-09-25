@@ -91,6 +91,7 @@ Vue.createApp({
     let csvFile = document.getElementById('csv-file')
 
     csvFile.addEventListener('change', this.handleFile);
+    this.dateRangeTo = new Date().toISOString().substring(0, 10)
 
   },
   template: "#app-template"
