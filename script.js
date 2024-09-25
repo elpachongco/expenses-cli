@@ -75,6 +75,7 @@ Vue.createApp({
       Papa.parse(file, {
         delimiter: ',',
         newline: '\n',
+        comments: true,
         step: this.handleCSVLineByLine,
         before: () => this.processing = true,
         complete: () => this.processing = false,

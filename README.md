@@ -26,6 +26,13 @@ DATE, ITEM NAME, AMOUNT, PRICE, CATEGORY
 > [!NOTE]  
 > Date doesn't have to be filled in everytime. If a date is added to a row, all other rows that don't have date will use the date from the last row that have a date.
 
+Comments can be added by starting the row with "#" character.
+
+The line 
+```
+# TEST, TEST TEST
+```
+will be excempted from processing.
 
 ## Example file
 
