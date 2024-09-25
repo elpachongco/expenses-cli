@@ -49,7 +49,9 @@ Vue.createApp({
       this.rows_daily[currentDate] =  (this.rows_daily[currentDate] || 0) + price;
       this.rows_monthly[currentMonth] = (this.rows_monthly[currentMonth] || 0) + price
 
-      let category = row[4].trim() || 'UNKNOWN'
+      let category = row[4] || 'UNKNOWN'
+      // Remove surrounding spaces, uppercase, and remove double spaces from category
+      category = category.trim().toUpperCase().replace(/ +(?= )/g,'')
       this.rows_categorical[category] = (this.rows_categorical[category] || 0) + price
     },
     formatMoney: function (num) {
