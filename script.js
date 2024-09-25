@@ -27,7 +27,7 @@ Vue.createApp({
   methods: {
     handleCSVLineByLine: function (results) {
       let row = results.data
-      if (this.first || row.length != 5 || !row[3]) {
+      if (this.first || row.length < 4 || !row[3]) {
         this.first = false
         return
       }
