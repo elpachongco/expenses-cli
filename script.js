@@ -100,6 +100,6 @@ Vue.createApp({
 
 if ("serviceWorker" in navigator) {
   // register service worker
-  navigator.serviceWorker.register("service-worker.js?v=4");
+  navigator.serviceWorker.register("./service-worker.js?v=5");
 }
 
