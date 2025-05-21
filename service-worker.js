@@ -1,4 +1,4 @@
-const CACHE_NAME = "expenses-cache-v3";
+const CACHE_NAME = "expenses-cache-v4";
 const URLS_TO_CACHE = [
   // Local files
   "earlps.net/expenses-cli/",
