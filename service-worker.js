@@ -1,18 +1,18 @@
-const CACHE_NAME = "expenses-cache-v2";
+const CACHE_NAME = "expenses-cache-v3";
 const URLS_TO_CACHE = [
   // Local files
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/pico-theme.css",
-  "/favicon-96x96.png",
-  "/favicon.svg",
-  "/favicon.ico",
-  "/apple-touch-icon.png",
-  "/site.webmanifest",
-  "/web-app-manifest-192x192.png",
-  "/web-app-manifest-512x512.png",
-  "/PapaParse-5.0.2/papaparse.js",
+  "earlps.net/expenses-cli/",
+  "earlps.net/expenses-cli/index.html",
+  "earlps.net/expenses-cli/manifest.json",
+  "earlps.net/expenses-cli/pico-theme.css",
+  "earlps.net/expenses-cli/favicon-96x96.png",
+  "earlps.net/expenses-cli/favicon.svg",
+  "earlps.net/expenses-cli/favicon.ico",
+  "earlps.net/expenses-cli/apple-touch-icon.png",
+  "earlps.net/expenses-cli/site.webmanifest",
+  "earlps.net/expenses-cli/web-app-manifest-192x192.png",
+  "earlps.net/expenses-cli/web-app-manifest-512x512.png",
+  "earlps.net/expenses-cli/PapaParse-5.0.2/papaparse.js",
 
   // Remote assets (CDN-hosted)
   "https://unpkg.com/vue@3/dist/vue.global.js",

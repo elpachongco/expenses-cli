@@ -1,7 +1,7 @@
 {
   "name": "Expenses Tracker by Earlps.net",
   "short_name": "Expenses.csv",
-  "start_url": "/",
+  "start_url": "earlps.net/expenses-cli/",
   "scope": "./",
   "icons": [
     {
